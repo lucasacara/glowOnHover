@@ -1,0 +1,384 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.page-container {
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #212121;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+
+    overflow: hidden;
+}
+
+.card {
+    position: relative;
+
+    width: 200px;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card .inner-container {
+    position: relative;
+
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    
+    background-color: #FFFFFF0D;
+    transition: 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    border: solid 1px #FFFFFF0D;
+
+    overflow: hidden;
+
+    --nRow: 4;
+    --nColumn: 3;
+
+    cursor: pointer;
+}
+
+.card .inner-container:hover {
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+
+    border-radius: 10px;
+
+    border-color: #FFFFFF1A;
+    box-shadow: calc(var(--nColumn) * 1px - 4px) calc(var(--nRow) * 1px - 4px) 16px -2px #FFFFFF0D;
+}
+
+.card:active .inner-container {
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+
+    border-radius: 12px;
+
+    border-color: #FFFFFF21;
+    transition: 0.05s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.glow-overlay {
+    position: absolute;
+
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+}
+
+.glow-overlay .grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.glow-overlay .grid .cell {
+    position: relative;
+    z-index: 2;
+}
+
+.glow-overlay .glow {
+    position: absolute;
+    width: 1400px;
+    height: 1400px;
+    border-radius: 700px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(circle,rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 60%);
+
+    transition: 0.075s linear, 0.15s linear opacity;
+
+    --wColumn: calc(100% / 5);
+    --hRow: calc(100% / 8);
+
+    left: calc(var(--wColumn) * var(--nColumn));
+    top: calc(var(--hRow) * var(--nRow));
+
+    opacity: 0;
+    mix-blend-mode: lighten;
+}
+
+.glow-overlay:hover .glow {
+    opacity: 1;
+
+    width: 800px;
+    height: 800px;
+}
+
+/* LINHA 1 */
+.card .inner-container:has(.grid .cell:nth-child(1):hover) {
+    --nRow: 1;
+    --nColumn: 1;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(2):hover) {
+    --nRow: 1;
+    --nColumn: 2;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(3):hover) {
+    --nRow: 1;
+    --nColumn: 3;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(4):hover) {
+    --nRow: 1;
+    --nColumn: 4;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(5):hover) {
+    --nRow: 1;
+    --nColumn: 5;
+}
+
+/* LINHA 2 */
+.card .inner-container:has(.grid .cell:nth-child(6):hover) {
+    --nRow: 2;
+    --nColumn: 1;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(7):hover) {
+    --nRow: 2;
+    --nColumn: 2;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(8):hover) {
+    --nRow: 2;
+    --nColumn: 3;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(9):hover) {
+    --nRow: 2;
+    --nColumn: 4;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(10):hover) {
+    --nRow: 2;
+    --nColumn: 5;
+}
+
+/* LINHA 3 */
+.card .inner-container:has(.grid .cell:nth-child(11):hover) {
+    --nRow: 3;
+    --nColumn: 1;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(12):hover) {
+    --nRow: 3;
+    --nColumn: 2;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(13):hover) {
+    --nRow: 3;
+    --nColumn: 3;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(14):hover) {
+    --nRow: 3;
+    --nColumn: 4;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(15):hover) {
+    --nRow: 3;
+    --nColumn: 5;
+}
+
+/* LINHA 4 */
+.card .inner-container:has(.grid .cell:nth-child(16):hover) {
+    --nRow: 4;
+    --nColumn: 1;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(17):hover) {
+    --nRow: 4;
+    --nColumn: 2;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(18):hover) {
+    --nRow: 4;
+    --nColumn: 3;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(19):hover) {
+    --nRow: 4;
+    --nColumn: 4;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(20):hover) {
+    --nRow: 4;
+    --nColumn: 5;
+}
+
+/* LINHA 5 */
+.card .inner-container:has(.grid .cell:nth-child(21):hover) {
+    --nRow: 5;
+    --nColumn: 1;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(22):hover) {
+    --nRow: 5;
+    --nColumn: 2;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(23):hover) {
+    --nRow: 5;
+    --nColumn: 3;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(24):hover) {
+    --nRow: 5;
+    --nColumn: 4;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(25):hover) {
+    --nRow: 5;
+    --nColumn: 5;
+}
+
+/* LINHA 6 */
+.card .inner-container:has(.grid .cell:nth-child(26):hover) {
+    --nRow: 6;
+    --nColumn: 1;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(27):hover) {
+    --nRow: 6;
+    --nColumn: 2;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(28):hover) {
+    --nRow: 6;
+    --nColumn: 3;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(29):hover) {
+    --nRow: 6;
+    --nColumn: 4;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(30):hover) {
+    --nRow: 6;
+    --nColumn: 5;
+}
+
+/* LINHA 7 */
+.card .inner-container:has(.grid .cell:nth-child(31):hover) {
+    --nRow: 7;
+    --nColumn: 1;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(32):hover) {
+    --nRow: 7;
+    --nColumn: 2;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(33):hover) {
+    --nRow: 7;
+    --nColumn: 3;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(34):hover) {
+    --nRow: 7;
+    --nColumn: 4;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(35):hover) {
+    --nRow: 7;
+    --nColumn: 5;
+}
+
+/* LINHA 8 */
+.card .inner-container:has(.grid .cell:nth-child(36):hover) {
+    --nRow: 8;
+    --nColumn: 1;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(37):hover) {
+    --nRow: 8;
+    --nColumn: 2;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(38):hover) {
+    --nRow: 8;
+    --nColumn: 3;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(39):hover) {
+    --nRow: 8;
+    --nColumn: 4;
+}
+
+.card .inner-container:has(.grid .cell:nth-child(40):hover) {
+    --nRow: 8;
+    --nColumn: 5;
+}
